@@ -110,7 +110,7 @@ public class BookStoreService {
         // Assuming employeeId is managed by the database and not set manually
     }
 
-    @Transactional
+	@Transactional(readOnly = false)
     public BookStoreEmployee saveEmployee(Long bookStoreId, BookStoreEmployee bookStoreEmployee) {
         BookStore bookStore = findBookStoreById(bookStoreId);
 
@@ -158,7 +158,7 @@ public class BookStoreService {
         // Assuming customerId is managed by the database and not set manually
     }
 
-    @Transactional
+    @Transactional(readOnly = false)
     public BookStoreCustomer saveCustomer(Long bookStoreId, BookStoreCustomer bookStoreCustomer) {
         BookStore bookStore = findBookStoreById(bookStoreId);
         Long customerId = bookStoreCustomer.getCustomerId();
@@ -221,9 +221,10 @@ public class BookStoreService {
 		
 	}
 
+	
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = true)
-    public List<Book> getBooksForBookStore(Long bookStoreId) {
+        public List<Book> getBooksForBookStore(Long bookStoreId) {
         BookStore bookStore = findBookStoreById(bookStoreId);
         return (List<Book>) bookStore.getBook();
     }
@@ -246,13 +247,13 @@ public class BookStoreService {
         return result;
     }
 
-    @Transactional(readOnly = true)
+  
     public BookStoreData returnBookStoreById(Long bookStoreId) {
         BookStore bookStore = findBookStoreById(bookStoreId);
         return new BookStoreData(bookStore);
     }
 
-    @Transactional
+  
     public void deleteBookStoreById(Long bookStoreId) {
         BookStore bookStore = findBookStoreById(bookStoreId);
         bookStoreDao.delete(bookStore);

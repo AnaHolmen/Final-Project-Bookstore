@@ -20,7 +20,6 @@ import book.store.controller.model.BookStoreData;
 import book.store.controller.model.BookStoreData.BookStoreBook;
 import book.store.controller.model.BookStoreData.BookStoreCustomer;
 import book.store.controller.model.BookStoreData.BookStoreEmployee;
-import book.store.entity.Book;
 import book.store.service.BookStoreService;
 
 
@@ -36,7 +35,7 @@ public class BookStoreController {
   	//The method creates/inserts a book store's data into the database by calling the saveBookStore() method in the BookStoreService class
     
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(code =HttpStatus.CREATED)
     public BookStoreData insertBookStore(@RequestBody BookStoreData bookStoreData) {
         log.info("Creating the book store {}", bookStoreData);
         return bookStoreService.saveBookStore(bookStoreData);
@@ -56,7 +55,7 @@ public class BookStoreController {
   	//The method inserts an employee's data into the database by calling the saveEmployee() method in the BookStoreService class
     
     @PostMapping("/{bookStoreId}/employee")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(code =HttpStatus.CREATED)
     public BookStoreEmployee insertEmployee(@PathVariable Long bookStoreId, @RequestBody BookStoreEmployee bookStoreEmployee) {
         log.info("Creating employee {} for book store with ID={}", bookStoreEmployee, bookStoreId);
         return bookStoreService.saveEmployee(bookStoreId, bookStoreEmployee);
@@ -66,7 +65,7 @@ public class BookStoreController {
   	//The method inserts a customer's data into the database by calling the saveCustomer() method in the BookStoreService class
    
     @PostMapping("/{bookStoreId}/customer")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(code =HttpStatus.CREATED)
     public BookStoreCustomer insertCustomer(@PathVariable Long bookStoreId, @RequestBody BookStoreCustomer bookStoreCustomer) {
         log.info("Creating customer {} for book store with ID={}", bookStoreCustomer, bookStoreId);
         return bookStoreService.saveCustomer(bookStoreId, bookStoreCustomer);
@@ -74,7 +73,7 @@ public class BookStoreController {
     }
     
     @PostMapping("/{bookstoreId}/book")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(code =HttpStatus.CREATED)
     public BookStoreBook insertBook(@PathVariable Long bookstoreId, @RequestBody BookStoreBook book) {
         log.info("Creating book {} for bookstore with ID={}", book, bookstoreId);
         return bookStoreService.saveBook(bookstoreId, book);

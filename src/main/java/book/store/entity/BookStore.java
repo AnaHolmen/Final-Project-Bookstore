@@ -36,7 +36,7 @@ public class BookStore {
 	
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	@ManyToMany(cascade = CascadeType.PERSIST)
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "book_store_customer", joinColumns = @JoinColumn(name = "book_store_id"),
 	inverseJoinColumns = @JoinColumn (name = "customer_id"))
 	private Set<Customer> customers = new HashSet<>();
@@ -50,7 +50,7 @@ public class BookStore {
 	
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	@OneToMany(mappedBy = "bookStore", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "bookStore", cascade = CascadeType.ALL)
 	private Set<Book> book = new HashSet<>();
 
 
